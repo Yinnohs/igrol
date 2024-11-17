@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: igrol-mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - item-list-network
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: yinnohs
+      MONGO_INITDB_ROOT_PASSWORD: 1234
+      MONGO_INITDB_DATABASE: igrol
+
+
+volumes:
+  data:
+
+networks:
+  item-list-network:
+    driver: bridge

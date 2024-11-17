@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: igrol
+  data:
+    mongodb:
+      uri: mongodb://yinnohs:1234@127.0.0.1:27017/igrol?authSource=admin
+    
+
+server:
+  port: 5052
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
