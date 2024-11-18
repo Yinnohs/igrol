@@ -14,7 +14,6 @@ import java.util.List;
 public class ProductService {
 
     private final String TYPE_FIND_BY_ID = "id";
-    private final String TYPE_FIND_BY_PRICE = "price";
     private final String TYPE_FIND_BY_NAME = "name";
 
     private final ProductRepository productRepository;
@@ -27,10 +26,6 @@ public class ProductService {
         String sanitizeType = type.toLowerCase().trim();
         if (TYPE_FIND_BY_ID.equals(sanitizeType)) return productRepository.findById(value);
         if (TYPE_FIND_BY_NAME.equals(sanitizeType))return productRepository.findByName(value);
-        if (TYPE_FIND_BY_PRICE.equals(sanitizeType) && checkIfValidPrice(value)){
-            BigDecimal transformedPrice = BigDecimal.valueOf(Double.parseDouble(value));
-            return productRepository.findByPrice(transformedPrice);
-        }
         throw new NotSupportedFindType("Find type not supported please try to find by id, name or price");
     }
 
