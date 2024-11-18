@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.user.infrastructure.out.repository;
 
-import com.yinnohs.igrol.user.infrastructure.errors.UserNotFoundError;
+import com.yinnohs.igrol.user.application.exception.UserNotFoundException;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.port.UserRepository;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
@@ -25,7 +25,7 @@ public class UserMongoRepository implements UserRepository {
     @Override
     public User findById(String userId) {
         UserDocument user = userMongoRepository.findById(userId)
-                .orElseThrow(()-> new UserNotFoundError("Could not be found user with id: " + userId));
+                .orElseThrow(()-> new UserNotFoundException("Could not be found user with id: " + userId));
 
         return  UserDocument.toUserModel(user);
     }
@@ -39,7 +39,7 @@ public class UserMongoRepository implements UserRepository {
     @Override
     public Boolean deleteById(String userId) {
         userMongoRepository.findById(userId)
-                .orElseThrow(()-> new UserNotFoundError("Could not be found user with id: " + userId));
+                .orElseThrow(()-> new UserNotFoundException("Could not be found user with id: " + userId));
         userMongoRepository.deleteById(userId);
         return true;
     }
@@ -47,7 +47,7 @@ public class UserMongoRepository implements UserRepository {
     @Override
     public User findByEmail(String email) {
         UserDocument user = userMongoRepository.findByEmail(email)
-                .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + email));
+                .orElseThrow(()-> new UserNotFoundException("Could not be found user with email: " + email));
 
         return  UserDocument.toUserModel(user);
     }
@@ -55,7 +55,7 @@ public class UserMongoRepository implements UserRepository {
     @Override
     public User findByPhoneNumber(String phoneNumber) {
         UserDocument user = userMongoRepository.findByPhoneNumber(phoneNumber)
-                .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + phoneNumber));
+                .orElseThrow(()-> new UserNotFoundException("Could not be found user with email: " + phoneNumber));
 
         return  UserDocument.toUserModel(user);
     }

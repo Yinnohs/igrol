@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.application.exception;
+package com.yinnohs.igrol.shared.exception;
 
 public class NotSupportedFindType extends RuntimeException{
     public NotSupportedFindType(String message) {
