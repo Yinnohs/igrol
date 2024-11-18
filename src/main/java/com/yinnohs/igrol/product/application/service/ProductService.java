@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -30,6 +31,9 @@ public class ProductService {
     }
 
     public Product create(Product product){
+        LocalDateTime now = LocalDateTime.now();
+        product.setCreatedAt(now);
+        product.setLastUpdate(now);
         return productRepository.save(product);
     }
 
@@ -40,18 +44,21 @@ public class ProductService {
     public Product updateProductPrice(String productId, BigDecimal newPrice){
         Product productToUpdate = productRepository.findById(productId);
         productToUpdate.setPrice(newPrice);
+        productToUpdate.setLastUpdate(LocalDateTime.now());
         return productRepository.save(productToUpdate);
     }
 
     public Product updateProductName(String productId, String name){
         Product productToUpdate = productRepository.findById(productId);
         productToUpdate.setName(name);
+        productToUpdate.setLastUpdate(LocalDateTime.now());
         return productRepository.save(productToUpdate);
     }
 
     public Product updateProductImage(String productId, String imageUrl){
         Product productToUpdate = productRepository.findById(productId);
         productToUpdate.setImageUrl(imageUrl);
+        productToUpdate.setLastUpdate(LocalDateTime.now());
         return productRepository.save(productToUpdate);
     }
 
