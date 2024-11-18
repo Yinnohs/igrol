@@ -33,12 +33,15 @@ public class UserController {
         return ResponseEntity.ok(userUseCases.findAll());
     }
 
-    @GetMapping("/{userid}")
-    public ResponseEntity<?> findByUserId(@PathVariable("userid") String userid ){
-        return ResponseEntity.ok(userUseCases.findById(userid));
+    @GetMapping()
+    public ResponseEntity<?> findBy(
+            @RequestParam(name = "type") String findType,
+            @RequestParam(name = "value") String value
+    ){
+        return ResponseEntity.ok(userUseCases.findBy(findType, value));
     }
 
-    @GetMapping("/{userid}")
+    @DeleteMapping("/{userid}")
     public ResponseEntity<?> deleteUserById(@PathVariable("userid") String userid){
         userUseCases.deleteUserById(userid);
         return ResponseEntity.ok("User Deleted successfully");
@@ -55,8 +58,7 @@ public class UserController {
     }
 
     @PutMapping("/address")
-    public ResponseEntity<?> updateUserAddress(@RequestBody UpdateUserAddressRequest request){
+    public ResponseEntity<?> updateUserAddress(@RequestBody UpdateUserAddressRequest request) {
         return ResponseEntity.ok(userUseCases.updateUserAddress(request.userId(), request.userAddress()));
     }
-
 }

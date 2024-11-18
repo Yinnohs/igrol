@@ -1,5 +1,6 @@
 package com.yinnohs.igrol.user.application.service;
 
+import com.yinnohs.igrol.user.application.service.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,11 @@ import java.util.List;
 
 @Service
 public class UserUseCases {
+
+    private final String TYPE_FIND_BY_ID = "id";
+    private final String TYPE_FIND_BY_EMAIL = "email";
+    private final String TYPE_FIND_BY_PHONE_NUMBER = "phone";
+
     private final UserRepository userRepository;
 
     public UserUseCases(UserRepository userRepository) {
@@ -23,12 +29,17 @@ public class UserUseCases {
         return userRepository.save(user);
     }
 
-    public User findById(String id){
-        return userRepository.findById(id);
-    }
-
     public List<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public User findBy(String findType , String value){
+        String sanitizeType = findType.toLowerCase().trim();
+        if (sanitizeType.equals(TYPE_FIND_BY_ID)) return userRepository.findById(value);
+        if (sanitizeType.equals(TYPE_FIND_BY_EMAIL)) return userRepository.findByEmail(value);
+        if (sanitizeType.equals(TYPE_FIND_BY_PHONE_NUMBER)) return userRepository.findByPhoneNumber(value);
+        throw new NotSupportedFindType("Find type not supported please try to find by id, email or phone");
+
     }
 
     public void deleteUserById(String userid){
