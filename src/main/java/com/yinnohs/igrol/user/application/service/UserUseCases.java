@@ -1,15 +1,17 @@
-package com.yinnohs.igrol.user.domain.service;
+package com.yinnohs.igrol.user.application.service;
 
 import com.yinnohs.igrol.user.domain.errors.UserNotFoundError;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class UserService {
+@Service
+public class UserUseCases {
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserUseCases(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -18,8 +20,7 @@ public class UserService {
     }
 
     public User findById(String id){
-        return userRepository.findById(id)
-                .orElseThrow(()-> new UserNotFoundError("Could not be found user with id: " + id));
+        return userRepository.findById(id);
     }
 
     public List<User> findAll(){
