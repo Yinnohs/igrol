@@ -2,7 +2,7 @@ package com.yinnohs.igrol.user.infrastructure.controller;
 
 import com.yinnohs.igrol.user.application.service.UserUseCases;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.infrastructure.dto.CreateUserDto;
+import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
 import com.yinnohs.igrol.user.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping()
-    public ResponseEntity<?> createUser(@RequestBody CreateUserDto dto){
+    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest dto){
         User userToCreate = userMapper.createDtoToUser(dto);
 
         User user = userUseCases.create(userToCreate);
@@ -40,4 +40,6 @@ public class UserController {
         userUseCases.deleteUserById(userid);
         return ResponseEntity.ok("User Deleted successfully");
     }
+
+    @PutMapping("")
 }
