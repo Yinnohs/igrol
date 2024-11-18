@@ -1,10 +1,11 @@
 package com.yinnohs.igrol.user.application.service;
 
-import com.yinnohs.igrol.user.domain.errors.UserNotFoundError;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,6 +17,10 @@ public class UserUseCases {
     }
 
     public User create(User user){
+        var now = LocalDateTime.now();
+
+        user.setCreatedAt(now);
+
         return userRepository.save(user);
     }
 

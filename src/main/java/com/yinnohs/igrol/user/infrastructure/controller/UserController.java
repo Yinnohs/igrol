@@ -1,13 +1,12 @@
 package com.yinnohs.igrol.user.infrastructure.controller;
 
 import com.yinnohs.igrol.user.application.service.UserUseCases;
+import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.dto.CreateUserDto;
 import com.yinnohs.igrol.user.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -18,9 +17,16 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping()
-    public ResponseEntity<?> createUser(CreateUserDto dto){
-        var userToCreate = userMapper.createDtoToUser(dto);
+    public ResponseEntity<?> createUser(@RequestBody CreateUserDto dto){
+        User userToCreate = userMapper.createDtoToUser(dto);
 
-        return ResponseEntity.ok(userUseCases.create(userToCreate));
+        User user = userUseCases.create(userToCreate);
+
+        return ResponseEntity.ok(user);
+    }
+
+    @GetMapping()
+    public ResponseEntity<?> findAllUsers(){
+        return ResponseEntity.ok(userUseCases.findAll());
     }
 }
