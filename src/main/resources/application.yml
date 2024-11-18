@@ -4,6 +4,7 @@ spring:
   data:
     mongodb:
       uri: mongodb://yinnohs:1234@127.0.0.1:27017/igrol?authSource=admin
+      auto-index: true
     
 
 server:
