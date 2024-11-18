@@ -1,8 +1,6 @@
 package com.yinnohs.igrol.user.infrastructure.dto;
 
-import java.time.LocalDateTime;
-
-public record CreateUserDto(
+public record CreateUserRequest(
          String name,
          String surname,
          String email,
