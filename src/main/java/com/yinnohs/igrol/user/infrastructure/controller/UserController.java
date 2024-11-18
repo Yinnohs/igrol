@@ -29,4 +29,15 @@ public class UserController {
     public ResponseEntity<?> findAllUsers(){
         return ResponseEntity.ok(userUseCases.findAll());
     }
+
+    @GetMapping("/{userid}")
+    public ResponseEntity<?> findByUserId(@PathVariable("userid") String userid ){
+        return ResponseEntity.ok(userUseCases.findById(userid));
+    }
+
+    @GetMapping("/{userid}")
+    public ResponseEntity<?> deleteUserById(@PathVariable("userid") String userid){
+        userUseCases.deleteUserById(userid);
+        return ResponseEntity.ok("User Deleted successfully");
+    }
 }

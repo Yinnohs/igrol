@@ -2,7 +2,6 @@ package com.yinnohs.igrol.user.application.service;
 
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -29,6 +28,10 @@ public class UserUseCases {
     }
 
     public List<User> findAll(){
-        return this.userRepository.findAll();
+        return userRepository.findAll();
+    }
+
+    public void deleteUserById(String userid){
+        userRepository.deleteById(userid);
     }
 }
