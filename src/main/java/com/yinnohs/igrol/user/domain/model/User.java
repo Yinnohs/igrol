@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @ToString
 @Builder
 public class User {
-    private String Id;
+    private String id;
     private String name;
     private String surname;
     private String email;
