@@ -49,7 +49,7 @@ public class ProductDocument {
                 .build();
     }
 
-    public static Product toUserModel(ProductDocument product){
+    public static Product toProductModel(ProductDocument product){
         return Product.builder()
                 .id(product.getId())
                 .name(product.getName())
