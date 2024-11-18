@@ -34,4 +34,22 @@ public class UserUseCases {
     public void deleteUserById(String userid){
         userRepository.deleteById(userid);
     }
+
+    public User updateUserEmail(String userid, String newEmail){
+        User userToUpdate = userRepository.findById(userid);
+        userToUpdate.setEmail(newEmail);
+        return userRepository.save(userToUpdate);
+    }
+
+    public User updateUserAddress(String userid, String address){
+        User userToUpdate = userRepository.findById(userid);
+        userToUpdate.setAddress(address);
+        return userRepository.save(userToUpdate);
+    }
+
+    public User updateUserPhoneNumber(String userid, String phoneNumber){
+        User userToUpdate = userRepository.findById(userid);
+        userToUpdate.setPhoneNumber(phoneNumber);
+        return userRepository.save(userToUpdate);
+    }
 }
