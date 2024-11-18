@@ -1,8 +1,8 @@
 package com.yinnohs.igrol.user.application.service;
 
-import com.yinnohs.igrol.user.application.service.exception.NotSupportedFindType;
+import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.outsource.UserRepository;
+import com.yinnohs.igrol.user.domain.port.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
