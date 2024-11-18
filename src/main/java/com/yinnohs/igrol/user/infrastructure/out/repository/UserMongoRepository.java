@@ -5,7 +5,6 @@ import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
 import com.yinnohs.igrol.user.infrastructure.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public class UserMongoRepository implements UserRepository {
 
     private final UserMongoDbRepository userMongoRepository;
 
-    MongoTemplate mongoTemplate;
 
     @Override
     public List<User> findAll() {
@@ -44,5 +42,21 @@ public class UserMongoRepository implements UserRepository {
                 .orElseThrow(()-> new UserNotFoundError("Could not be found user with id: " + userId));
         userMongoRepository.deleteById(userId);
         return true;
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        UserEntity user = userMongoRepository.findByEmail(email)
+                .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + email));
+
+        return  UserEntity.toUserModel(user);
+    }
+
+    @Override
+    public User findByPhoneNumber(String phoneNumber) {
+        UserEntity user = userMongoRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + phoneNumber));
+
+        return  UserEntity.toUserModel(user);
     }
 }
