@@ -2,6 +2,7 @@ package com.yinnohs.igrol.user.infrastructure.document;
 
 
 import com.yinnohs.igrol.user.domain.model.User;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -26,9 +28,12 @@ public class UserDocument {
     private String name;
     private String surname;
     @NotNull
+    @Email
+    @Indexed(unique = true)
     private String email;
     private String address;
     @NotNull
+    @Indexed(unique = true)
     private String phoneNumber;
     @NotNull
     private String password;
