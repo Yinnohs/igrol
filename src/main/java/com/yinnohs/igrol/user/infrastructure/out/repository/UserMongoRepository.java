@@ -2,7 +2,7 @@ package com.yinnohs.igrol.user.infrastructure.out.repository;
 
 import com.yinnohs.igrol.user.domain.errors.UserNotFoundError;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.outsource.UserRepository;
+import com.yinnohs.igrol.user.domain.port.UserRepository;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
