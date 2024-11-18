@@ -21,7 +21,7 @@ public class UserController {
 
     @PostMapping()
     public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request){
-        User userToCreate = userMapper.createDtoToUser(request);
+        User userToCreate = userMapper.createRequestToUser(request);
 
         User user = userUseCases.create(userToCreate);
 

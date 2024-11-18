@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserMapper {
 
-    public  User createDtoToUser(CreateUserRequest createUserDto){
+    public  User createRequestToUser(CreateUserRequest createUserDto){
         return User.builder()
                 .name(createUserDto.name())
                 .surname(createUserDto.surname())
