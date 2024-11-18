@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.user.application.service;
 
-import com.yinnohs.igrol.user.application.service.exception.NotSupportedFindType;
+import com.yinnohs.igrol.user.application.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
 import org.springframework.stereotype.Service;
