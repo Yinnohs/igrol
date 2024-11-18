@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.domain.errors;
+package com.yinnohs.igrol.user.infrastructure.errors;
 
 public class UserNotFoundError extends RuntimeException{
     public UserNotFoundError(String message) {
