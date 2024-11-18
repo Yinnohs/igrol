@@ -1,13 +1,13 @@
 package com.yinnohs.igrol.user.infrastructure.mapper;
 
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.infrastructure.dto.CreateUserDto;
+import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserMapper {
 
-    public  User createDtoToUser(CreateUserDto createUserDto){
+    public  User createDtoToUser(CreateUserRequest createUserDto){
         return User.builder()
                 .name(createUserDto.name())
                 .surname(createUserDto.surname())
