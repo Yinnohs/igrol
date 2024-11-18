@@ -59,5 +59,4 @@ public class UserController {
         return ResponseEntity.ok(userUseCases.updateUserAddress(request.userId(), request.userAddress()));
     }
 
-
 }
