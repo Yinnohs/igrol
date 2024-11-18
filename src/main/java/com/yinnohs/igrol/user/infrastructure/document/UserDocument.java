@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.infrastructure.entity;
+package com.yinnohs.igrol.user.infrastructure.document;
 
 
 import com.yinnohs.igrol.user.domain.model.User;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Document("user")
-public class UserEntity {
+public class UserDocument {
 
     @Id
     private String id;
@@ -40,8 +40,8 @@ public class UserEntity {
     @LastModifiedDate
     private LocalDateTime lastUpdate;
 
-    public static UserEntity fromUserModel(User user){
-        return UserEntity.builder()
+    public static UserDocument fromUserModel(User user){
+        return UserDocument.builder()
                 .id(user.getId())
                 .email(user.getEmail())
                 .address(user.getAddress())
@@ -55,7 +55,7 @@ public class UserEntity {
                 .build();
     }
 
-    public static User toUserModel(UserEntity user){
+    public static User toUserModel(UserDocument user){
         return User.builder()
                 .id(user.getId())
                 .email(user.getEmail())

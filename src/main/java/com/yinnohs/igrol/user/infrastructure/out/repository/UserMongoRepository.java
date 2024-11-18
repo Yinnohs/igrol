@@ -3,7 +3,7 @@ package com.yinnohs.igrol.user.infrastructure.out.repository;
 import com.yinnohs.igrol.user.domain.errors.UserNotFoundError;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.outsource.UserRepository;
-import com.yinnohs.igrol.user.infrastructure.entity.UserEntity;
+import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,22 +18,22 @@ public class UserMongoRepository implements UserRepository {
 
     @Override
     public List<User> findAll() {
-        List<UserEntity> users = userMongoRepository.findAll();
-        return users.stream().map(UserEntity::toUserModel).toList();
+        List<UserDocument> users = userMongoRepository.findAll();
+        return users.stream().map(UserDocument::toUserModel).toList();
     }
 
     @Override
     public User findById(String userId) {
-        UserEntity user = userMongoRepository.findById(userId)
+        UserDocument user = userMongoRepository.findById(userId)
                 .orElseThrow(()-> new UserNotFoundError("Could not be found user with id: " + userId));
 
-        return  UserEntity.toUserModel(user);
+        return  UserDocument.toUserModel(user);
     }
 
     @Override
     public User save(User user) {
-        var savedUser = userMongoRepository.save(UserEntity.fromUserModel(user));
-        return UserEntity.toUserModel(savedUser);
+        var savedUser = userMongoRepository.save(UserDocument.fromUserModel(user));
+        return UserDocument.toUserModel(savedUser);
     }
 
     @Override
@@ -46,17 +46,17 @@ public class UserMongoRepository implements UserRepository {
 
     @Override
     public User findByEmail(String email) {
-        UserEntity user = userMongoRepository.findByEmail(email)
+        UserDocument user = userMongoRepository.findByEmail(email)
                 .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + email));
 
-        return  UserEntity.toUserModel(user);
+        return  UserDocument.toUserModel(user);
     }
 
     @Override
     public User findByPhoneNumber(String phoneNumber) {
-        UserEntity user = userMongoRepository.findByPhoneNumber(phoneNumber)
+        UserDocument user = userMongoRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(()-> new UserNotFoundError("Could not be found user with email: " + phoneNumber));
 
-        return  UserEntity.toUserModel(user);
+        return  UserDocument.toUserModel(user);
     }
 }
