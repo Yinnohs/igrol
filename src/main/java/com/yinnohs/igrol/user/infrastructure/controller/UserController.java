@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok(userUseCases.findAll());
     }
 
-    @GetMapping()
+    @GetMapping("/find")
     public ResponseEntity<?> findBy(
             @RequestParam(name = "type") String findType,
             @RequestParam(name = "value") String value
