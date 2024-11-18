@@ -2,6 +2,7 @@ package com.yinnohs.igrol.user.infrastructure.entity;
 
 
 import com.yinnohs.igrol.user.domain.model.User;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,9 +25,13 @@ public class UserEntity {
     private String id;
     private String name;
     private String surname;
+    @NotNull
     private String email;
     private String address;
+    @NotNull
     private String phoneNumber;
+    @NotNull
+    private String password;
 
     @CreatedDate
     private LocalDateTime createdAt;
@@ -46,6 +51,7 @@ public class UserEntity {
                 .createdAt(user.getCreatedAt())
                 .lastUpdate(user.getLastUpdate())
                 .lastLoginAt(user.getLastLoginAt())
+                .password(user.getPassword())
                 .build();
     }
 
@@ -60,6 +66,7 @@ public class UserEntity {
                 .createdAt(user.getCreatedAt())
                 .lastUpdate(user.getLastUpdate())
                 .lastLoginAt(user.getLastLoginAt())
+                .password(user.getPassword())
                 .build();
     }
 
