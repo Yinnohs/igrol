@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Valid
-public record LoginResponseDto(
+public record LoginResponse(
         @NotEmpty
         String token,
         @NotNull
