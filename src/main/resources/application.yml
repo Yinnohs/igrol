@@ -18,6 +18,10 @@ management:
   endpoint:
     health:
       show-details: always
+rsa:
+  private-key: classpath:certs/private-final-key.pem
+  public-key: classpath:certs/public-key.pem
+
 
 logging:
   level:
