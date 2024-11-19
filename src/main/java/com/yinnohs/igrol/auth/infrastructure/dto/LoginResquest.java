@@ -10,7 +10,7 @@ public record LoginResquest(
         @Email
         String email,
         @NotEmpty
-        String plainPassword
+        String password
 
 ) {
 }

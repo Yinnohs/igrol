@@ -39,7 +39,7 @@ public class AuthController {
         userToCreate.setPassword(hashedPassword);
         User user = userService.create(userToCreate);
 
-        return ResponseEntity.ok(user);
+        return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
 
     @PostMapping("/login")
@@ -47,7 +47,7 @@ public class AuthController {
         var authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(
                         request.email(),
-                        request.plainPassword()
+                        request.password()
                 ));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
