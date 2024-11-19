@@ -2,6 +2,7 @@ package com.yinnohs.igrol.user.infrastructure.mapper;
 
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
+import com.yinnohs.igrol.user.infrastructure.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,5 +16,16 @@ public class UserMapper {
                 .email(createUserDto.email())
                 .phoneNumber(createUserDto.phoneNumber())
                 .build();
+    }
+
+    public UserResponseDto userToResponseDto(User user){
+        return new UserResponseDto(
+                user.getId(),
+                user.getName(),
+                user.getSurname(),
+                user.getEmail(),
+                user.getAddress(),
+                user.getPhoneNumber()
+        );
     }
 }

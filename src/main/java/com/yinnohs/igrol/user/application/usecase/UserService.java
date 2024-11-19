@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.application.service;
+package com.yinnohs.igrol.user.application.usecase;
 
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserUseCases {
+public class UserService {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_EMAIL = "email";
@@ -17,7 +17,7 @@ public class UserUseCases {
 
     private final UserRepository userRepository;
 
-    public UserUseCases(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
