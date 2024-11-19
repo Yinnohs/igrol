@@ -14,9 +14,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -40,9 +42,16 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.disable())
-                .authorizeHttpRequests(request -> request
-                        .anyRequest().permitAll()
-                );
+                .authorizeHttpRequests(request -> {
+                        request.requestMatchers("/error/**").permitAll();
+                        request.requestMatchers("/api/auth/**").permitAll();
+                        request.anyRequest().authenticated();
+                    }
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer((oauth2)-> oauth2.jwt((jwt)-> jwt.decoder(jwtDecoder())))
+                .userDetailsService(jpaUserDetailsService)
+                .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }
