@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class AuthController {
 
-    private AuthService authService;
-    private AuthenticationManager authenticationManager;
-    private UserService userService;
-    private UserMapper userMapper;
-    private PasswordEncoder passwordEncoder;
+    private final AuthService authService;
+    private final AuthenticationManager authenticationManager;
+    private final UserService userService;
+    private final UserMapper userMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request){

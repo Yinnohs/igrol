@@ -34,8 +34,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @Slf4j
 public class SecurityConfig {
 
-    private RsaKeyConfigProperties rsaKeyConfigProperties;
-    private JpaUserDetailsService jpaUserDetailsService;
+    private final RsaKeyConfigProperties rsaKeyConfigProperties;
+    private final JpaUserDetailsService jpaUserDetailsService;
 
     @Bean
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{

@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AuthService {
 
-    private JwtEncoder jwtEncoder;
-    private PasswordEncoder passwordEncoder;
-    private UserRepository userRepository;
+    private final JwtEncoder jwtEncoder;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     public String generateToken(Authentication authentication){
         String scope = getScopeFromAuthentication(authentication);
