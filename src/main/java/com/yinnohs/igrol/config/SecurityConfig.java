@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.disable())
                 .authorizeHttpRequests(request -> {
                         request.requestMatchers("/error/**").permitAll();
-                        request.requestMatchers("/api/auth/**").permitAll();
+                        request.requestMatchers("/api/v1/auth/**").permitAll();
                         request.anyRequest().authenticated();
                     }
                 )
