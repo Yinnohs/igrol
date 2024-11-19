@@ -32,7 +32,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.findAll());
     }
 
-    @GetMapping
+    @GetMapping("/find")
     public ResponseEntity<?> findBy(
         @RequestParam(name = "type") String findType,
         @RequestParam(name = "value") String value

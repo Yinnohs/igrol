@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.user.infrastructure.controller;
 
-import com.yinnohs.igrol.user.application.service.UserUseCases;
+import com.yinnohs.igrol.user.application.usecase.UserService;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserAddressRequest;
@@ -16,21 +16,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    private final UserUseCases userUseCases;
+    private final UserService userService;
     private final UserMapper userMapper;
-
-    @PostMapping()
-    public ResponseEntity<?> createUser(@RequestBody CreateUserRequest request){
-        User userToCreate = userMapper.createRequestToUser(request);
-
-        User user = userUseCases.create(userToCreate);
-
-        return ResponseEntity.ok(user);
-    }
 
     @GetMapping()
     public ResponseEntity<?> findAllUsers(){
-        return ResponseEntity.ok(userUseCases.findAll());
+        return ResponseEntity.ok(userService
+                .findAll()
+                .stream()
+                .map(userMapper::userToResponseDto)
+                .toList());
     }
 
     @GetMapping("/find")
@@ -38,27 +33,31 @@ public class UserController {
             @RequestParam(name = "type") String findType,
             @RequestParam(name = "value") String value
     ){
-        return ResponseEntity.ok(userUseCases.findBy(findType, value));
+        var user = userService.findBy(findType, value);
+        return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
 
     @DeleteMapping("/{userid}")
     public ResponseEntity<?> deleteUserById(@PathVariable("userid") String userid){
-        userUseCases.deleteUserById(userid);
+        userService.deleteUserById(userid);
         return ResponseEntity.ok("User Deleted successfully");
     }
 
     @PutMapping("/phone")
     public ResponseEntity<?> updateUserPhoneNumber(@RequestBody UpdateUserPhoneNumberRequest request){
-        return ResponseEntity.ok(userUseCases.updateUserPhoneNumber(request.userId(), request.phoneNumber()));
+        var user = userService.updateUserPhoneNumber(request.userId(), request.phoneNumber());
+        return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
 
     @PutMapping("/email")
     public ResponseEntity<?> updateUserEmail(@RequestBody UpdateUserEmailRequest request){
-        return ResponseEntity.ok(userUseCases.updateUserEmail(request.userId(), request.email()));
+        var user = userService.updateUserEmail(request.userId(), request.email());
+        return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
 
     @PutMapping("/address")
     public ResponseEntity<?> updateUserAddress(@RequestBody UpdateUserAddressRequest request) {
-        return ResponseEntity.ok(userUseCases.updateUserAddress(request.userId(), request.userAddress()));
+        var user = userService.updateUserAddress(request.userId(), request.userAddress());
+        return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
 }
