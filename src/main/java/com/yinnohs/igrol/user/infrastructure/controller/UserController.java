@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.user.infrastructure.controller;
 
-import com.yinnohs.igrol.user.application.usecase.UserServiceImpl;
+import com.yinnohs.igrol.user.infrastructure.service.UserServiceImpl;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserAddressRequest;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserEmailRequest;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserPhoneNumberRequest;

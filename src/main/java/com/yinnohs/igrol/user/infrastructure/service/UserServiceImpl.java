@@ -1,7 +1,8 @@
-package com.yinnohs.igrol.user.application.usecase;
+package com.yinnohs.igrol.user.infrastructure.service;
 
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
+import com.yinnohs.igrol.user.domain.port.in.UserService;
 import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_EMAIL = "email";
