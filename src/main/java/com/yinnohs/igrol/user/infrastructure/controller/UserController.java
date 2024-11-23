@@ -1,8 +1,6 @@
 package com.yinnohs.igrol.user.infrastructure.controller;
 
-import com.yinnohs.igrol.user.application.usecase.UserService;
-import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
+import com.yinnohs.igrol.user.application.usecase.UserServiceImpl;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserAddressRequest;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserEmailRequest;
 import com.yinnohs.igrol.user.infrastructure.dto.UpdateUserPhoneNumberRequest;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/users")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserMapper userMapper;
 
     @GetMapping()

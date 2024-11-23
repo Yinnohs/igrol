@@ -3,7 +3,7 @@ package com.yinnohs.igrol.auth.infrastructure.controller;
 import com.yinnohs.igrol.auth.infrastructure.dto.LoginResponse;
 import com.yinnohs.igrol.auth.infrastructure.dto.LoginResquest;
 import com.yinnohs.igrol.auth.infrastructure.service.AuthService;
-import com.yinnohs.igrol.user.application.usecase.UserService;
+import com.yinnohs.igrol.user.application.usecase.UserServiceImpl;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
 import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
@@ -28,7 +28,7 @@ public class AuthController {
 
     private final AuthService authService;
     private final AuthenticationManager authenticationManager;
-    private final UserService userService;
+    private final UserServiceImpl userService;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 

@@ -2,14 +2,14 @@ package com.yinnohs.igrol.user.application.usecase;
 
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.port.UserRepository;
+import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_EMAIL = "email";
@@ -17,7 +17,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

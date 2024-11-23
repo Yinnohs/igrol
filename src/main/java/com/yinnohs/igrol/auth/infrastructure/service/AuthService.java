@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.auth.infrastructure.service;
 
-import com.yinnohs.igrol.user.domain.port.UserRepository;
+import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
