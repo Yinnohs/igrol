@@ -66,7 +66,7 @@ The project runs on port 5052 by thefault you can change that on the file locate
 With others IDEs its easier to bring up a maven project but for the sake of leaving this README short i will not deep dive into it.
 
 ## How To Use
-RN is a work in progress but you can create some regiser a login request using any HTTP testing suit like postman or insomnia
+RN is a work in progress, but you can create some register a login request using any HTTP testing suit like postman or insomnia
 
 ### - Register new user
 Create a POST request to:
