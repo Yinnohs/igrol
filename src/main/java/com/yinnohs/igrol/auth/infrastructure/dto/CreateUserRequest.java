@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.infrastructure.dto;
+package com.yinnohs.igrol.auth.infrastructure.dto;
 
 public record CreateUserRequest(
          String name,

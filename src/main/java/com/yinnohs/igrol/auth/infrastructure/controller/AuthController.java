@@ -6,7 +6,7 @@ import com.yinnohs.igrol.auth.infrastructure.service.AuthService;
 import com.yinnohs.igrol.user.infrastructure.service.UserServiceImpl;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
-import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
+import com.yinnohs.igrol.auth.infrastructure.dto.CreateUserRequest;
 import com.yinnohs.igrol.user.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
