@@ -10,7 +10,7 @@ import java.util.function.BiFunction;
 @RequiredArgsConstructor
 public class FindSpecificUserUseCase implements BiFunction<String, String , User> {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Override
     public User apply(String findType, String value) {
