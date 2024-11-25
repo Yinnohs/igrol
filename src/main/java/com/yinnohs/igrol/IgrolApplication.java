@@ -1,6 +1,6 @@
 package com.yinnohs.igrol;
 
-import com.yinnohs.igrol.auth.infrastructure.config.RsaKeyConfigProperties;
+import com.yinnohs.igrol.auth.infrastructure.configuration.RsaKeyConfigProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
