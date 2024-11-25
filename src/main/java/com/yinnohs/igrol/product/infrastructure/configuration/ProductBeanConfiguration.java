@@ -2,7 +2,6 @@ package com.yinnohs.igrol.product.infrastructure.configuration;
 
 import com.yinnohs.igrol.product.application.*;
 import com.yinnohs.igrol.product.domain.service.ProductService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
