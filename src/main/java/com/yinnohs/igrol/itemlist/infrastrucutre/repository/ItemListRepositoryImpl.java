@@ -42,8 +42,9 @@ public class ItemListRepositoryImpl implements ItemListRepository {
 
     @Override
     public void deleteItemListById(String id) {
-        ItemListDocument document = repository.findById(id)
+        repository.findById(id)
                 .orElseThrow(()-> new IteListNotFoundException("Could Not found item list with id: + id"));
+
         repository.deleteById(id);
     }
 }
