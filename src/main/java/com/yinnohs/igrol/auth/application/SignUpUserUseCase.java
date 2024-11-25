@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.function.Function;
 
 @RequiredArgsConstructor
-public class SingUpUserUseCase implements Function<User, User> {
+public class SignUpUserUseCase implements Function<User, User> {
 
     private final UserService userService;
 
