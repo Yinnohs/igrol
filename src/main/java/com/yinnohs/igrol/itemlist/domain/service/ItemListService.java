@@ -10,4 +10,5 @@ public interface ItemListService {
     public List<ItemList> findAllUserOwnedItemLists(User user);
     public ItemList findBy(String type, String value);
     public void deleteItemListById(String listId);
+    public List<ItemList> findAllItemListWhereUserParticipate(User user);
 }

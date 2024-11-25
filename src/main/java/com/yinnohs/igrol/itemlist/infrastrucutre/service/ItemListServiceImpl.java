@@ -70,4 +70,13 @@ public class ItemListServiceImpl implements ItemListService {
 
         repository.deleteById(listId);
     }
+
+    @Override
+    public List<ItemList> findAllItemListWhereUserParticipate(User user) {
+        return repository
+                .findListOfaGivenUser(user.getId())
+                .stream()
+                .map(mapper::toDomainModel)
+                .toList();
+    }
 }
