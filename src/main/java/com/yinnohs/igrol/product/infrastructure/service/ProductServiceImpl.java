@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.product.application.service;
+package com.yinnohs.igrol.product.infrastructure.service;
 
 import com.yinnohs.igrol.product.domain.model.Product;
 import com.yinnohs.igrol.product.domain.port.ProductRepository;
