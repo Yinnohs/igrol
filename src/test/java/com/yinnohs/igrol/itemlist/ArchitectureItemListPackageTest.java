@@ -13,6 +13,8 @@ public class ArchitectureItemListPackageTest {
     private final String BASE_PACKAGE = "com.yinnohs.igrol";
     private final String ITEM_LIST_PACKAGE = ".itemlist";
     private final String JAVA_PACKAGES = "java..";
+    private final String USER_DOMAIN_PACKAGES = BASE_PACKAGE + ".user" +  ".domain..";
+    private final String PRODUCT_DOMAIN_PACKAGES = BASE_PACKAGE + ".product" +  ".domain..";
     private final String DOMAIN_PACKAGES = BASE_PACKAGE + ITEM_LIST_PACKAGE +  ".domain..";
     private final String APPLICATION_PACKAGES = BASE_PACKAGE + ITEM_LIST_PACKAGE + ".application..";
     private final String LOMBOK = "lombok..";
@@ -25,7 +27,12 @@ public class ArchitectureItemListPackageTest {
                 .resideInAnyPackage(DOMAIN_PACKAGES)
                 .should()
                 .dependOnClassesThat()
-                .resideOutsideOfPackages(DOMAIN_PACKAGES, JAVA_PACKAGES, LOMBOK);
+                .resideOutsideOfPackages(
+                        DOMAIN_PACKAGES,
+                        JAVA_PACKAGES,
+                        LOMBOK,
+                        USER_DOMAIN_PACKAGES,
+                        PRODUCT_DOMAIN_PACKAGES);
 
         domainRule.allowEmptyShould(true).check(importedClasses);
     }
@@ -36,7 +43,13 @@ public class ArchitectureItemListPackageTest {
                 .resideInAnyPackage(APPLICATION_PACKAGES)
                 .should()
                 .dependOnClassesThat()
-                .resideOutsideOfPackages(DOMAIN_PACKAGES, JAVA_PACKAGES, LOMBOK, APPLICATION_PACKAGES);
+                .resideOutsideOfPackages(
+                        DOMAIN_PACKAGES,
+                        JAVA_PACKAGES,
+                        LOMBOK,
+                        APPLICATION_PACKAGES,
+                        USER_DOMAIN_PACKAGES,
+                        PRODUCT_DOMAIN_PACKAGES);
 
         domainRule.allowEmptyShould(true).check(importedClasses);
     }
