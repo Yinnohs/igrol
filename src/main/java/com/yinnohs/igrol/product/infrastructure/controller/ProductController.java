@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.product.infrastructure.controller;
 
-import com.yinnohs.igrol.product.application.service.ProductService;
+import com.yinnohs.igrol.product.application.service.ProductServiceImpl;
 import com.yinnohs.igrol.product.infrastructure.dto.CreateProductRequest;
 import com.yinnohs.igrol.product.infrastructure.dto.UpdateProductImageRequest;
 import com.yinnohs.igrol.product.infrastructure.dto.UpdateProductNameRequest;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductService productService;
+    private final ProductServiceImpl productService;
     private final ProductMapper productMapper;
 
     @PostMapping

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductService {
+public class ProductServiceImpl {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_NAME = "name";
