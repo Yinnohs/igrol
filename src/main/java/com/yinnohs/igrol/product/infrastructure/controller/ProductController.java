@@ -1,7 +1,6 @@
 package com.yinnohs.igrol.product.infrastructure.controller;
 
 import com.yinnohs.igrol.product.application.*;
-import com.yinnohs.igrol.product.infrastructure.service.ProductServiceImpl;
 import com.yinnohs.igrol.product.infrastructure.dto.CreateProductRequest;
 import com.yinnohs.igrol.product.infrastructure.dto.UpdateProductImageRequest;
 import com.yinnohs.igrol.product.infrastructure.dto.UpdateProductNameRequest;
