@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.config;
+package com.yinnohs.igrol.auth.infrastructure.config;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;

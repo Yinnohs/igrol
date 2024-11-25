@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.config;
+package com.yinnohs.igrol.auth.infrastructure.config;
 
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
