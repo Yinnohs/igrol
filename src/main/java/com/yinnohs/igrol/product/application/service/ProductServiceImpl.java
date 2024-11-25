@@ -2,6 +2,7 @@ package com.yinnohs.igrol.product.application.service;
 
 import com.yinnohs.igrol.product.domain.model.Product;
 import com.yinnohs.igrol.product.domain.port.ProductRepository;
+import com.yinnohs.igrol.product.domain.service.ProductService;
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_NAME = "name";
