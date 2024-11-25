@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.itemlist.aplication.usecases.cud;
 
-public interface CudUseCases extends AddItemToItemList,
+public interface CudItemListUseCases extends AddItemToItemList,
         AddNewParticipantToItemList,
         CreateNewItemList,
         DeleteItemList,
