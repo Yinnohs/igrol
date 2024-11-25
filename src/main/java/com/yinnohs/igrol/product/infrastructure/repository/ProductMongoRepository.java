@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.product.infrastructure.repository;
 
-import com.yinnohs.igrol.product.application.exception.ProductNotFoundException;
+import com.yinnohs.igrol.product.domain.exception.ProductNotFoundException;
 import com.yinnohs.igrol.product.domain.model.Product;
 import com.yinnohs.igrol.product.domain.port.ProductRepository;
 import com.yinnohs.igrol.product.infrastructure.document.ProductDocument;

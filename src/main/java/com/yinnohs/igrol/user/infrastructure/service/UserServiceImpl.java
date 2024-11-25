@@ -1,15 +1,16 @@
-package com.yinnohs.igrol.user.application.usecase;
+package com.yinnohs.igrol.user.infrastructure.service;
 
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.port.UserRepository;
+import com.yinnohs.igrol.user.domain.port.in.UserService;
+import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     private final String TYPE_FIND_BY_ID = "id";
     private final String TYPE_FIND_BY_EMAIL = "email";
@@ -17,15 +18,11 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public User create(User user){
-        var now = LocalDateTime.now();
-
-        user.setCreatedAt(now);
-
         return userRepository.save(user);
     }
 
@@ -34,10 +31,10 @@ public class UserService {
     }
 
     public User findBy(String findType , String value){
-        String sanitizeType = findType.toLowerCase().trim();
-        if (sanitizeType.equals(TYPE_FIND_BY_ID)) return userRepository.findById(value);
-        if (sanitizeType.equals(TYPE_FIND_BY_EMAIL)) return userRepository.findByEmail(value);
-        if (sanitizeType.equals(TYPE_FIND_BY_PHONE_NUMBER)) return userRepository.findByPhoneNumber(value);
+
+        if (findType.equals(TYPE_FIND_BY_ID)) return userRepository.findById(value);
+        if (findType.equals(TYPE_FIND_BY_EMAIL)) return userRepository.findByEmail(value);
+        if (findType.equals(TYPE_FIND_BY_PHONE_NUMBER)) return userRepository.findByPhoneNumber(value);
         throw new NotSupportedFindType("Find type not supported please try to find by id, email or phone");
 
     }

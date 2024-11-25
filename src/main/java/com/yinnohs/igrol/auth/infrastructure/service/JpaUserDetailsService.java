@@ -1,7 +1,7 @@
 package com.yinnohs.igrol.auth.infrastructure.service;
 
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.port.UserRepository;
+import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

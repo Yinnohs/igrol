@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.user.domain.port;
+package com.yinnohs.igrol.user.domain.port.out;
 
 import com.yinnohs.igrol.user.domain.model.User;
 

@@ -1,8 +1,8 @@
 package com.yinnohs.igrol.user.infrastructure.out.repository;
 
-import com.yinnohs.igrol.user.application.exception.UserNotFoundException;
+import com.yinnohs.igrol.user.domain.exception.UserNotFoundException;
 import com.yinnohs.igrol.user.domain.model.User;
-import com.yinnohs.igrol.user.domain.port.UserRepository;
+import com.yinnohs.igrol.user.domain.port.out.UserRepository;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

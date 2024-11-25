@@ -1,12 +1,13 @@
 package com.yinnohs.igrol.auth.infrastructure.controller;
 
+import com.yinnohs.igrol.auth.application.FindUserByEmailUseCase;
+import com.yinnohs.igrol.auth.application.SignUpUserUseCase;
 import com.yinnohs.igrol.auth.infrastructure.dto.LoginResponse;
 import com.yinnohs.igrol.auth.infrastructure.dto.LoginResquest;
 import com.yinnohs.igrol.auth.infrastructure.service.AuthService;
-import com.yinnohs.igrol.user.application.usecase.UserService;
 import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.infrastructure.document.UserDocument;
-import com.yinnohs.igrol.user.infrastructure.dto.CreateUserRequest;
+import com.yinnohs.igrol.auth.infrastructure.dto.CreateUserRequest;
 import com.yinnohs.igrol.user.infrastructure.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,8 @@ public class AuthController {
 
     private final AuthService authService;
     private final AuthenticationManager authenticationManager;
-    private final UserService userService;
+    private final SignUpUserUseCase signUpUserUseCase;
+    private final FindUserByEmailUseCase findUserByEmailUseCase;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
@@ -37,7 +39,7 @@ public class AuthController {
         String hashedPassword = passwordEncoder.encode(request.password());
         User userToCreate = userMapper.createRequestToUser(request);
         userToCreate.setPassword(hashedPassword);
-        User user = userService.create(userToCreate);
+        User user = signUpUserUseCase.apply(userToCreate);
 
         return ResponseEntity.ok(userMapper.userToResponseDto(user));
     }
@@ -54,10 +56,10 @@ public class AuthController {
         UserDocument userDetails = (UserDocument) authentication.getPrincipal();
 
         log.info("Token requested for user {}", authentication.getAuthorities());
+
+        //token creating and getting user (response creation)
         String token = authService.generateToken(authentication);
-
-        User user = userService.findBy("email", request.email());
-
+        User user = findUserByEmailUseCase.apply(request.email());
         LoginResponse response = new LoginResponse(token, userMapper.userToResponseDto(user));
 
         return ResponseEntity.ok(response);
