@@ -21,5 +21,4 @@ public class Item {
     LocalDateTime createdAt;
     LocalDateTime lastUpdate;
     LocalDateTime boughtAt;
-    LocalDateTime
 }
