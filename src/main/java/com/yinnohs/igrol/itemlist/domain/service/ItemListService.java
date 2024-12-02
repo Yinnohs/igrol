@@ -11,4 +11,5 @@ public interface ItemListService {
     public ItemList findBy(String type, String value);
     public void deleteItemListById(String listId);
     public List<ItemList> findAllItemListWhereUserParticipate(User user);
+    public ItemList updateList(ItemList itemListToUpdate);
 }

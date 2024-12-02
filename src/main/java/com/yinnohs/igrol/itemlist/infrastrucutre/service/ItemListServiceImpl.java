@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -78,5 +77,11 @@ public class ItemListServiceImpl implements ItemListService {
                 .stream()
                 .map(mapper::toDomainModel)
                 .toList();
+    }
+
+    @Override
+    public ItemList updateList(ItemList itemListToUpdate) {
+        var updatedList = repository.save(mapper.fromDomainModel(itemListToUpdate));
+        return mapper.toDomainModel(updatedList);
     }
 }

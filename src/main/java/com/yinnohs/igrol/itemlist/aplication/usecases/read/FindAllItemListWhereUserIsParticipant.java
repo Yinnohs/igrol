@@ -4,6 +4,6 @@ import com.yinnohs.igrol.itemlist.domain.model.ItemList;
 
 import java.util.List;
 
-public interface FindAllItemList {
-    List<ItemList> findAllItemList();
+public interface FindAllItemListWhereUserIsParticipant {
+    List<ItemList> findAllItemListWhereUserIsParticipant(String email);
 }
