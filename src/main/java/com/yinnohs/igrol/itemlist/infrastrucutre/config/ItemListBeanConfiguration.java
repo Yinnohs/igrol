@@ -1,4 +1,4 @@
-package com.yinnohs.igrol.itemlist.infrastrucutre.controller;
+package com.yinnohs.igrol.itemlist.infrastrucutre.config;
 
 import com.yinnohs.igrol.itemlist.aplication.usecases.impl.ItemListWhereUserIsParticipantUsesCasesImpl;
 import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
