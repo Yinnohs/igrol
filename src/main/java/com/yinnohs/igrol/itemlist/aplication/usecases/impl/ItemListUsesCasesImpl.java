@@ -6,16 +6,16 @@ import com.yinnohs.igrol.itemlist.domain.model.Item;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
 import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
 import com.yinnohs.igrol.product.domain.service.ProductService;
-import com.yinnohs.igrol.user.domain.model.User;
 import com.yinnohs.igrol.user.domain.port.in.UserService;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListUseCases, ReadItemListWhereUserIsParticipantUseCases {
+public class ItemListUsesCasesImpl implements CudItemListUseCases, ReadItemListWhereUserIsParticipantUseCases {
 
     private final ItemListService itemListService;
     private final UserService userService;
@@ -32,6 +32,7 @@ public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListU
         if (isNewParticipant){
             participants.add(newParticipant);
             itemList.setParticipants(participants);
+            itemList.setLastUpdate(LocalDateTime.now());
             return itemListService.updateList(itemList);
         }
 
@@ -41,6 +42,7 @@ public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListU
     @Override
     public ItemList createNewItemList(ItemList itemList) {
         var now = LocalDateTime.now();
+        itemList.setItems(new ArrayList<>());
         itemList.setCreatedAt(now);
         itemList.setLastUpdate(now);
         return itemListService.createNewList(itemList);
@@ -60,14 +62,17 @@ public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListU
                 .stream()
                 .map((item)-> {
                     if(item.getId().equals(itemId)){
-                        item.setBoughtAt(LocalDateTime.now());
+                        var now = LocalDateTime.now();
                         item.setBought(true);
+                        item.setBoughtAt(now);
+                        item.setLastUpdate(now);
                         return item;
                     }
                     return item;
                 }).toList();
-        itemList.setItems(items);
 
+        itemList.setItems(items);
+        itemList.setLastUpdate(LocalDateTime.now());
         return itemListService.updateList(itemList);
     }
 
@@ -80,8 +85,7 @@ public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListU
 
     @Override
     public List<ItemList> findOwnedItemListByAnUserUseCase(String userId) {
-        var user = userService.findBy("id", userId);
-        return itemListService.findAllUserOwnedItemLists(user);
+        return itemListService.findAllUserOwnedItemLists(userId);
     }
 
     @Override
@@ -102,12 +106,25 @@ public class ItemListWhereUserIsParticipantUsesCasesImpl implements CudItemListU
                 .build();
 
         itemList.getItems().add(itemToAdd);
+        itemList.setLastUpdate(LocalDateTime.now());
         return itemListService.updateList(itemList);
     }
 
     @Override
-    public List<ItemList> findAllItemListWhereUserIsParticipant(String email) {
-        User user = userService.findBy("email", email);
-        return itemListService.findAllItemListWhereUserParticipate(user);
+    public List<ItemList> findAllItemListWhereUserIsParticipant(String userId) {
+        return itemListService.findAllItemListWhereUserParticipate(userId);
+    }
+
+    @Override
+    public ItemList removeItemFromList(String itemId, String listId) {
+        var itemList = itemListService.findBy("id", listId);
+        var updatedItemList = itemList.getItems()
+                .stream()
+                .filter(item -> item.getId().equals(itemId))
+                .toList();
+
+        itemList.setItems(updatedItemList);
+        itemList.setLastUpdate(LocalDateTime.now());
+        return itemListService.updateList(itemList);
     }
 }

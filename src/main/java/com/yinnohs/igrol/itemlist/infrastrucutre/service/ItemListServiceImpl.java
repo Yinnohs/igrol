@@ -30,9 +30,9 @@ public class ItemListServiceImpl implements ItemListService {
     }
 
     @Override
-    public List<ItemList> findAllUserOwnedItemLists(User owner) {
+    public List<ItemList> findAllUserOwnedItemLists(String userId) {
         return repository
-                .findByListOwner(owner)
+                .findByListOwner(userId)
                 .stream()
                 .map(mapper::toDomainModel)
                 .toList();
@@ -71,9 +71,9 @@ public class ItemListServiceImpl implements ItemListService {
     }
 
     @Override
-    public List<ItemList> findAllItemListWhereUserParticipate(User user) {
+    public List<ItemList> findAllItemListWhereUserParticipate(String userId) {
         return repository
-                .findListOfaGivenUser(user.getId())
+                .findListOfaGivenUser(userId)
                 .stream()
                 .map(mapper::toDomainModel)
                 .toList();

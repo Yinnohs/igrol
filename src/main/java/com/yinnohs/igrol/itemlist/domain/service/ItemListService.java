@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface ItemListService {
     public ItemList createNewList(ItemList itemList);
-    public List<ItemList> findAllUserOwnedItemLists(User user);
+    public List<ItemList> findAllUserOwnedItemLists(String userId);
     public ItemList findBy(String type, String value);
     public void deleteItemListById(String listId);
-    public List<ItemList> findAllItemListWhereUserParticipate(User user);
+    public List<ItemList> findAllItemListWhereUserParticipate(String userId);
     public ItemList updateList(ItemList itemListToUpdate);
 }

@@ -1,7 +1,6 @@
 package com.yinnohs.igrol.itemlist.infrastrucutre.repository;
 
 import com.yinnohs.igrol.itemlist.infrastrucutre.document.ItemListDocument;
-import com.yinnohs.igrol.user.domain.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -11,9 +10,11 @@ import java.util.Optional;
 
 @Repository
 public interface ItemListDocumentRepository extends MongoRepository<ItemListDocument, String> {
-    List<ItemListDocument> findByListOwner(User owner);
+    @Query("{ 'listOwner.id': ?0 }")
+    List<ItemListDocument> findByListOwner(String userId);
+
     Optional<ItemListDocument> findByTitle(String title);
 
-    @Query("{ 'users': { $elemMatch: { 'id': ?0 } } }")
+    @Query("{ 'participants.id': ?0 }")
     List<ItemListDocument> findListOfaGivenUser(String userId);
 }

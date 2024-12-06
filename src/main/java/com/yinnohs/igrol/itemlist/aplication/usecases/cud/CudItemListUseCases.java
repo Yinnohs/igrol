@@ -5,5 +5,6 @@ public interface CudItemListUseCases extends AddItemToItemList,
         CreateNewItemList,
         DeleteItemList,
         MarkGivenItemAsBought,
-        SoftDeleteItemList
+        SoftDeleteItemList,
+        RemoveItemFromList
 { }
