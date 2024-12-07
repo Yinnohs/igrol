@@ -1,11 +1,8 @@
 package com.yinnohs.igrol.itemlist.infrastrucutre.controller;
 
-
 import com.yinnohs.igrol.itemlist.aplication.usecases.impl.ItemListUsesCasesImpl;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
-import com.yinnohs.igrol.itemlist.infrastrucutre.dto.AddNewItemToListRequest;
-import com.yinnohs.igrol.itemlist.infrastrucutre.dto.CreateItemListRequest;
-import com.yinnohs.igrol.itemlist.infrastrucutre.dto.RemoveItemFromListRequest;
+import com.yinnohs.igrol.itemlist.infrastrucutre.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +14,17 @@ import org.springframework.web.bind.annotation.*;
 public class ItemListController {
 
     private final ItemListUsesCasesImpl usesCases;
+
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<?> findAllItemListOwnedByAnUser(@PathVariable("userId")String userId){
+        return ResponseEntity.ok(usesCases.findOwnedItemListByAnUserUseCase(userId));
+    }
+
+    @GetMapping("/users/participants/{userId}")
+    public ResponseEntity<?> findAllItemListCurrentParticipant(@PathVariable("userId")String userId){
+        return ResponseEntity.ok(usesCases.findAllItemListWhereUserIsParticipant(userId));
+    }
 
     @PostMapping
     public ResponseEntity<?> createNewItemList(@RequestBody CreateItemListRequest request){
@@ -30,9 +38,9 @@ public class ItemListController {
         return ResponseEntity.ok(usesCases.createNewItemList(itemList));
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<?> findAllItemListOwnedByAnUser(@PathVariable("userId")String userId){
-        return ResponseEntity.ok(usesCases.findOwnedItemListByAnUserUseCase(userId));
+    @PutMapping("/users")
+    public  ResponseEntity<?> addNewParticipantToItemList(@RequestBody AddNewParticipantToListRequest request){
+        return ResponseEntity.ok(usesCases.addNewParticipantToItemList(request.listId(), request.participantId()));
     }
 
     @PutMapping("/items")
@@ -45,9 +53,18 @@ public class ItemListController {
         return ResponseEntity.ok(usesCases.softDeleteItemList(listId));
     }
 
-    @DeleteMapping("/items")
+    @PutMapping("/items/remove")
     public ResponseEntity<?> removeItemFromItemList(@RequestBody RemoveItemFromListRequest request){
         return  ResponseEntity.ok(usesCases.removeItemFromList(request.ItemId(), request.listId()));
+    }
+
+    @PutMapping("/items/bought")
+    public ResponseEntity<?> markItemAsBought(@RequestBody MarkItemAsBoughtRequest request){
+        return  ResponseEntity.ok(usesCases.markGivenItemAsBought(request.listId(), request.itemId()));
+    }
+    @DeleteMapping("{userId}")
+    public ResponseEntity<?> deleteItemList(@PathVariable String listId){
+        return  ResponseEntity.ok(usesCases.deleteItemList(listId));
     }
 
 }
