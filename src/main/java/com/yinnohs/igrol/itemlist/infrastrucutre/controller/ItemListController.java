@@ -48,7 +48,7 @@ public class ItemListController {
         return ResponseEntity.ok(usesCases.addAnItemToItemList(request.listId(), request.userId(), request.productId()));
     }
 
-    @PutMapping("/items/{itemId}")
+    @PutMapping("{itemId}")
     public ResponseEntity<?> softDeleteItemList(@PathVariable String listId){
         return ResponseEntity.ok(usesCases.softDeleteItemList(listId));
     }
