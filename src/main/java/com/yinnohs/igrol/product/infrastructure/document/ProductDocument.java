@@ -1,12 +1,11 @@
 package com.yinnohs.igrol.product.infrastructure.document;
 
+
 import com.yinnohs.igrol.product.domain.model.Product;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.validation.annotation.Validated;
@@ -33,9 +32,8 @@ public class ProductDocument {
     @NotNull
     private BigDecimal price;
 
-    @CreatedDate
+
     private LocalDateTime createdAt;
-    @LastModifiedDate
     private LocalDateTime lastUpdate;
 
     public static ProductDocument fromProductModel(Product product){

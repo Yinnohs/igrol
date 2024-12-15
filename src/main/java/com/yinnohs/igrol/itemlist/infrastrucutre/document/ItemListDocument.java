@@ -1,5 +1,6 @@
 package com.yinnohs.igrol.itemlist.infrastrucutre.document;
 
+
 import com.yinnohs.igrol.itemlist.domain.model.Item;
 import com.yinnohs.igrol.user.domain.model.User;
 import lombok.*;
@@ -23,6 +24,7 @@ public class ItemListDocument {
     private User listOwner;
     private List<Item> items;
     private List<User> participants;
+
     LocalDateTime createdAt;
     LocalDateTime lastUpdate;
     LocalDateTime deletedAt;

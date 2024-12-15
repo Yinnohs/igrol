@@ -38,7 +38,6 @@ public class ItemListServiceImpl implements ItemListService {
                 .toList();
     }
 
-
     @Override
     public ItemList findBy(String type, String value) {
 

@@ -1,6 +1,6 @@
 package com.yinnohs.igrol.itemlist.infrastrucutre.controller;
 
-import com.yinnohs.igrol.itemlist.aplication.usecases.impl.ItemListUsesCasesImpl;
+import com.yinnohs.igrol.itemlist.aplication.usecases.impl.ItemListUseCasesImpl;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
 import com.yinnohs.igrol.itemlist.infrastrucutre.dto.*;
 import lombok.RequiredArgsConstructor;
@@ -13,17 +13,16 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/itemlist")
 public class ItemListController {
 
-    private final ItemListUsesCasesImpl usesCases;
-
+    private final ItemListUseCasesImpl useCases;
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<?> findAllItemListOwnedByAnUser(@PathVariable("userId")String userId){
-        return ResponseEntity.ok(usesCases.findOwnedItemListByAnUserUseCase(userId));
+        return ResponseEntity.ok(useCases.findOwnedItemListByAnUserUseCase(userId));
     }
 
     @GetMapping("/users/participants/{userId}")
     public ResponseEntity<?> findAllItemListCurrentParticipant(@PathVariable("userId")String userId){
-        return ResponseEntity.ok(usesCases.findAllItemListWhereUserIsParticipant(userId));
+        return ResponseEntity.ok(useCases.findAllItemListWhereUserIsParticipant(userId));
     }
 
     @PostMapping
@@ -35,36 +34,36 @@ public class ItemListController {
                 .participants(request.participants())
                 .build();
 
-        return ResponseEntity.ok(usesCases.createNewItemList(itemList));
+        return ResponseEntity.ok(useCases.createNewItemList(itemList));
     }
 
     @PutMapping("/users")
     public  ResponseEntity<?> addNewParticipantToItemList(@RequestBody AddNewParticipantToListRequest request){
-        return ResponseEntity.ok(usesCases.addNewParticipantToItemList(request.listId(), request.participantId()));
+        return ResponseEntity.ok(useCases.addNewParticipantToItemList(request.listId(), request.participantId()));
     }
 
     @PutMapping("/items")
     public  ResponseEntity<?> addAnItemToTheItemList(@RequestBody AddNewItemToListRequest request){
-        return ResponseEntity.ok(usesCases.addAnItemToItemList(request.listId(), request.userId(), request.productId()));
+        return ResponseEntity.ok(useCases.addAnItemToItemList(request.listId(), request.userId(), request.productId()));
     }
 
     @PutMapping("{itemId}")
     public ResponseEntity<?> softDeleteItemList(@PathVariable String listId){
-        return ResponseEntity.ok(usesCases.softDeleteItemList(listId));
+        return ResponseEntity.ok(useCases.softDeleteItemList(listId));
     }
 
     @PutMapping("/items/remove")
     public ResponseEntity<?> removeItemFromItemList(@RequestBody RemoveItemFromListRequest request){
-        return  ResponseEntity.ok(usesCases.removeItemFromList(request.ItemId(), request.listId()));
+        return  ResponseEntity.ok(useCases.removeItemFromList(request.ItemId(), request.listId()));
     }
 
     @PutMapping("/items/bought")
     public ResponseEntity<?> markItemAsBought(@RequestBody MarkItemAsBoughtRequest request){
-        return  ResponseEntity.ok(usesCases.markGivenItemAsBought(request.listId(), request.itemId()));
+        return  ResponseEntity.ok(useCases.markGivenItemAsBought(request.listId(), request.itemId()));
     }
     @DeleteMapping("{userId}")
     public ResponseEntity<?> deleteItemList(@PathVariable String listId){
-        return  ResponseEntity.ok(usesCases.deleteItemList(listId));
+        return  ResponseEntity.ok(useCases.deleteItemList(listId));
     }
 
 }

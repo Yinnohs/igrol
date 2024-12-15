@@ -1,7 +1,5 @@
 package com.yinnohs.igrol.itemlist.aplication.usecases.impl;
 
-import com.yinnohs.igrol.itemlist.aplication.usecases.cud.CudItemListUseCases;
-import com.yinnohs.igrol.itemlist.aplication.usecases.read.ReadItemListWhereUserIsParticipantUseCases;
 import com.yinnohs.igrol.itemlist.domain.model.Item;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
 import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class ItemListUsesCasesImpl implements CudItemListUseCases, ReadItemListWhereUserIsParticipantUseCases {
+public class ItemListUseCasesImpl implements ItemListUseCases {
 
     private final ItemListService itemListService;
     private final UserService userService;

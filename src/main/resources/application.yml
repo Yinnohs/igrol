@@ -28,3 +28,13 @@ rsa:
 logging:
   level:
     org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+
+
+socket:
+  endpoint:
+    list-updated: listUpdated
+    add-item-to-item-list: addItemToItemList
+
+  server:
+    port: 5053
+    address: "127.0.0.1"

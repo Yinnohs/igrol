@@ -1,6 +1,7 @@
 package com.yinnohs.igrol.user.infrastructure.document;
 
 
+
 import com.yinnohs.igrol.user.domain.model.User;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -9,9 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -44,11 +43,8 @@ public class UserDocument implements UserDetails {
     @NotNull
     private String password;
 
-    @CreatedDate
     private LocalDateTime createdAt;
-
     private LocalDateTime lastLoginAt;
-    @LastModifiedDate
     private LocalDateTime lastUpdate;
 
     public static UserDocument fromUserModel(User user){

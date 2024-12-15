@@ -16,7 +16,6 @@ public class HexagonalArchTest {
     private final String JAVA_PACKAGES = "java..";
     private final String DOMAIN_PACKAGES = "..domain..";
     private final String APPLICATION_PACKAGES =  "..application..";
-    //private final String USER_DOMAIN = "..user.domain..";
     private final String LOMBOK = "lombok..";
     private  JavaClasses importedClasses = new ClassFileImporter().importPackages(BASE_PACKAGE);
 
