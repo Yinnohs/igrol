@@ -1,7 +1,6 @@
-package com.yinnohs.igrol.itemlist.domain.service;
+package com.yinnohs.igrol.itemlist.domain.ports.in;
 
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
-import com.yinnohs.igrol.user.domain.model.User;
 
 import java.util.List;
 
