@@ -6,6 +6,7 @@ import com.yinnohs.igrol.itemlist.domain.ports.in.ItemListService;
 import com.yinnohs.igrol.itemlist.domain.ports.out.ProductAdapter;
 import com.yinnohs.igrol.itemlist.domain.ports.out.UserAdapter;
 import com.yinnohs.igrol.product.domain.service.ProductService;
+import com.yinnohs.igrol.user.domain.model.User;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -39,12 +40,14 @@ public class ItemListUseCasesImpl implements ItemListUseCases {
     }
 
     @Override
-    public ItemList createNewItemList(ItemList itemList, String ownerId, List<String> participantsId) {
-        User owner = user
-
-
+    public ItemList createNewItemList(ItemList itemList, String ownerId) {
+        User owner = userAdapter.findUserById(ownerId);
+        List<User> participants = new ArrayList<>();
+        participants.add(owner);
 
         var now = LocalDateTime.now();
+        itemList.setParticipants(participants);
+        itemList.setListOwner(owner);
         itemList.setItems(new ArrayList<>());
         itemList.setCreatedAt(now);
         itemList.setLastUpdate(now);
