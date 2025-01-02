@@ -30,11 +30,9 @@ public class ItemListController {
 
         var itemList = ItemList.builder()
                 .title(request.title())
-                .listOwner(request.listOwner())
-                .participants(request.participants())
                 .build();
 
-        return ResponseEntity.ok(useCases.createNewItemList(itemList));
+        return ResponseEntity.ok(useCases.createNewItemList(itemList, request.ownerId()));
     }
 
     @PutMapping("/users")
