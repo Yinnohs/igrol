@@ -1,9 +1,9 @@
 package com.yinnohs.igrol.itemlist.infrastrucutre.config;
 
 import com.yinnohs.igrol.itemlist.aplication.usecases.impl.ItemListUseCasesImpl;
-import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
-import com.yinnohs.igrol.product.domain.service.ProductService;
-import com.yinnohs.igrol.user.domain.port.in.UserService;
+import com.yinnohs.igrol.itemlist.domain.ports.in.ItemListService;
+import com.yinnohs.igrol.itemlist.domain.ports.out.ProductAdapter;
+import com.yinnohs.igrol.itemlist.domain.ports.out.UserAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
 @RequiredArgsConstructor
 public class ItemListBeanConfiguration {
     private final ItemListService itemListService;
-    private final UserService userService;
-    private final ProductService productService;
+    private final UserAdapter userAdapter;
+    private final ProductAdapter productAdapter;
 
     @Bean
     public ItemListUseCasesImpl itemListWhereUserIsParticipantUsesCasesImpl(){
-        return new ItemListUseCasesImpl(itemListService,userService,productService);
+        return new ItemListUseCasesImpl(itemListService, userAdapter, productAdapter);
     }
 }

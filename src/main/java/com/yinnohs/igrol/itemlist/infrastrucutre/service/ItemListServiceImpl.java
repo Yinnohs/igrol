@@ -2,12 +2,11 @@ package com.yinnohs.igrol.itemlist.infrastrucutre.service;
 
 import com.yinnohs.igrol.itemlist.domain.exception.IteListNotFoundException;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
-import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
+import com.yinnohs.igrol.itemlist.domain.ports.in.ItemListService;
 import com.yinnohs.igrol.itemlist.infrastrucutre.document.ItemListDocument;
 import com.yinnohs.igrol.itemlist.infrastrucutre.mapper.ItemListMapper;
 import com.yinnohs.igrol.itemlist.infrastrucutre.repository.ItemListDocumentRepository;
 import com.yinnohs.igrol.shared.exception.NotSupportedFindType;
-import com.yinnohs.igrol.user.domain.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

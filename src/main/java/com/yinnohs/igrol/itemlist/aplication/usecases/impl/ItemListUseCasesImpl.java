@@ -2,9 +2,10 @@ package com.yinnohs.igrol.itemlist.aplication.usecases.impl;
 
 import com.yinnohs.igrol.itemlist.domain.model.Item;
 import com.yinnohs.igrol.itemlist.domain.model.ItemList;
-import com.yinnohs.igrol.itemlist.domain.service.ItemListService;
+import com.yinnohs.igrol.itemlist.domain.ports.in.ItemListService;
+import com.yinnohs.igrol.itemlist.domain.ports.out.ProductAdapter;
+import com.yinnohs.igrol.itemlist.domain.ports.out.UserAdapter;
 import com.yinnohs.igrol.product.domain.service.ProductService;
-import com.yinnohs.igrol.user.domain.port.in.UserService;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
@@ -16,12 +17,12 @@ import java.util.UUID;
 public class ItemListUseCasesImpl implements ItemListUseCases {
 
     private final ItemListService itemListService;
-    private final UserService userService;
-    private final ProductService productService;
+    private final UserAdapter userAdapter;
+    private final ProductAdapter productService;
 
     @Override
     public ItemList addNewParticipantToItemList(String itemListId, String newParticipantId) {
-        var newParticipant = userService.findBy("id", newParticipantId);
+        var newParticipant = userAdapter.findUserById(newParticipantId);
         var itemList = itemListService.findBy("id", itemListId);
         var participants = itemList.getParticipants();
 
@@ -88,8 +89,8 @@ public class ItemListUseCasesImpl implements ItemListUseCases {
 
     @Override
     public ItemList addAnItemToItemList(String listId, String userId, String productId) {
-        var product = productService.findBy("id", productId);
-        var user = userService.findBy("id", userId);
+        var product = productService.findProductById(productId);
+        var user = userAdapter.findUserById(userId);
         var itemList = itemListService.findBy("id", listId);
         var now = LocalDateTime.now();
 
