@@ -39,7 +39,11 @@ public class ItemListUseCasesImpl implements ItemListUseCases {
     }
 
     @Override
-    public ItemList createNewItemList(ItemList itemList) {
+    public ItemList createNewItemList(ItemList itemList, String ownerId, List<String> participantsId) {
+        User owner = user
+
+
+
         var now = LocalDateTime.now();
         itemList.setItems(new ArrayList<>());
         itemList.setCreatedAt(now);

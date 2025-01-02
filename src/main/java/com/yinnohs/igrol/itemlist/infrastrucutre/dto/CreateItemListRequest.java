@@ -8,7 +8,7 @@ import java.util.List;
 
 public record CreateItemListRequest(
         String title,
-        User listOwner,
-        List<User> participants
+        String ownerId,
+        List<String> participantsIds
 ) {
 }
